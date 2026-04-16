@@ -21,7 +21,7 @@ void init_cpu_params(CPUParams *params, const char *name) {
     params->pipeline_depth = 5;
     params->single_cycle_ipc = 1;
     params->pipelined_ipc = 1;
-    params->has_forwarding = 0;
+    params->has_forwarding = 1;
 }
 
 void init_metrics(PerformanceMetrics *m) {
