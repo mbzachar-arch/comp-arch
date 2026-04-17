@@ -149,3 +149,4 @@ void print_pipeline_state(FILE *out, const PipelineState *p) {
     fprintf(out, "  EX/MEM : %s\n", p->ex_mem.valid ? opcode_name(p->ex_mem.instr.op) : "empty");
     fprintf(out, "  MEM/WB : %s\n", p->mem_wb.valid ? opcode_name(p->mem_wb.instr.op) : "empty");
 }
+//done

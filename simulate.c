@@ -617,3 +617,4 @@ void write_professor_style_report(FILE *out,
     fprintf(out, "\tAverage throughput: %.3f instr/s\n", pipe_sim->metrics.throughput_ips);
     fprintf(out, "\n");
 }
+//done
