@@ -22,7 +22,7 @@ void init_cpu_params(CPUParams *params, const char *name) {
     params->single_cycle_ipc = 1;
     params->pipelined_ipc = 1;
     params->has_forwarding = 1;
-
+//values taken from sample output file in the project file
     params->lw_ps = 800.0;
     params->sw_ps = 700.0;
     params->rtype_ps = 600.0;
