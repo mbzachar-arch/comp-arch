@@ -1,0 +1,32 @@
+Processed 1 file(s): ['branchy_loop1.asm']
+
+Instruction counts:
+lw=1, sw=0, R-type=5, beq=2, j=1
+Total instructions: 9
+
+=== Non-pipeline mode ===
+Per-instruction execution time (ps):
+  lw: 800
+  sw: 700
+  R-type: 600
+  beq: 500
+  j: 500
+Average CPI: 1.000
+Total execution time: 5300 ps
+Average instruction latency: 0.589 ps
+Average throughput: 1698113207547.170 instr/s
+
+=== Pipeline mode ===
+Single-cycle reference clock: 800 ps
+	Pipelined clock: 200 ps
+
+	Total cycles: 9100
+	Stall cycles: 827
+	Flush cycles: 3308
+	Data hazards: 827
+	Control hazards: 1654
+	Average CPI: 1.834
+	Total execution time: 1820000 ps
+	Average instruction latency: 366.714 ps
+	Average throughput: 2726923076.923 instr/s
+

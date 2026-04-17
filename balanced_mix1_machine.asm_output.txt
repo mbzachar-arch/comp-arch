@@ -1,0 +1,32 @@
+Processed 1 file(s): ['balanced_mix1_machine.asm']
+
+Instruction counts:
+lw=1, sw=1, R-type=7, beq=1, j=1
+Total instructions: 11
+
+=== Non-pipeline mode ===
+Per-instruction execution time (ps):
+  lw: 800
+  sw: 700
+  R-type: 600
+  beq: 500
+  j: 500
+Average CPI: 1.000
+Total execution time: 6700 ps
+Average instruction latency: 91.781 ps
+Average throughput: 10895522388.060 instr/s
+
+=== Pipeline mode ===
+Single-cycle reference clock: 800 ps
+	Pipelined clock: 200 ps
+
+	Total cycles: 99
+	Stall cycles: 8
+	Flush cycles: 16
+	Data hazards: 8
+	Control hazards: 8
+	Average CPI: 1.356
+	Total execution time: 19800 ps
+	Average instruction latency: 271.233 ps
+	Average throughput: 3686868686.869 instr/s
+

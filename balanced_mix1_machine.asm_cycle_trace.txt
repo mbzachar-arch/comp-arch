@@ -1,0 +1,667 @@
+Single-Cycle: Cycle 1 -> addi
+Single-Cycle: Cycle 2 -> addi
+Single-Cycle: Cycle 3 -> lw
+Single-Cycle: Cycle 4 -> add
+Single-Cycle: Cycle 5 -> sub
+Single-Cycle: Cycle 6 -> and
+Single-Cycle: Cycle 7 -> or
+Single-Cycle: Cycle 8 -> sw
+Single-Cycle: Cycle 9 -> addi
+Single-Cycle: Cycle 10 -> beq
+Single-Cycle: Cycle 11 -> j
+Single-Cycle: Cycle 12 -> lw
+Single-Cycle: Cycle 13 -> add
+Single-Cycle: Cycle 14 -> sub
+Single-Cycle: Cycle 15 -> and
+Single-Cycle: Cycle 16 -> or
+Single-Cycle: Cycle 17 -> sw
+Single-Cycle: Cycle 18 -> addi
+Single-Cycle: Cycle 19 -> beq
+Single-Cycle: Cycle 20 -> j
+Single-Cycle: Cycle 21 -> lw
+Single-Cycle: Cycle 22 -> add
+Single-Cycle: Cycle 23 -> sub
+Single-Cycle: Cycle 24 -> and
+Single-Cycle: Cycle 25 -> or
+Single-Cycle: Cycle 26 -> sw
+Single-Cycle: Cycle 27 -> addi
+Single-Cycle: Cycle 28 -> beq
+Single-Cycle: Cycle 29 -> j
+Single-Cycle: Cycle 30 -> lw
+Single-Cycle: Cycle 31 -> add
+Single-Cycle: Cycle 32 -> sub
+Single-Cycle: Cycle 33 -> and
+Single-Cycle: Cycle 34 -> or
+Single-Cycle: Cycle 35 -> sw
+Single-Cycle: Cycle 36 -> addi
+Single-Cycle: Cycle 37 -> beq
+Single-Cycle: Cycle 38 -> j
+Single-Cycle: Cycle 39 -> lw
+Single-Cycle: Cycle 40 -> add
+Single-Cycle: Cycle 41 -> sub
+Single-Cycle: Cycle 42 -> and
+Single-Cycle: Cycle 43 -> or
+Single-Cycle: Cycle 44 -> sw
+Single-Cycle: Cycle 45 -> addi
+Single-Cycle: Cycle 46 -> beq
+Single-Cycle: Cycle 47 -> j
+Single-Cycle: Cycle 48 -> lw
+Single-Cycle: Cycle 49 -> add
+Single-Cycle: Cycle 50 -> sub
+Single-Cycle: Cycle 51 -> and
+Single-Cycle: Cycle 52 -> or
+Single-Cycle: Cycle 53 -> sw
+Single-Cycle: Cycle 54 -> addi
+Single-Cycle: Cycle 55 -> beq
+Single-Cycle: Cycle 56 -> j
+Single-Cycle: Cycle 57 -> lw
+Single-Cycle: Cycle 58 -> add
+Single-Cycle: Cycle 59 -> sub
+Single-Cycle: Cycle 60 -> and
+Single-Cycle: Cycle 61 -> or
+Single-Cycle: Cycle 62 -> sw
+Single-Cycle: Cycle 63 -> addi
+Single-Cycle: Cycle 64 -> beq
+Single-Cycle: Cycle 65 -> j
+Single-Cycle: Cycle 66 -> lw
+Single-Cycle: Cycle 67 -> add
+Single-Cycle: Cycle 68 -> sub
+Single-Cycle: Cycle 69 -> and
+Single-Cycle: Cycle 70 -> or
+Single-Cycle: Cycle 71 -> sw
+Single-Cycle: Cycle 72 -> addi
+Single-Cycle: Cycle 73 -> beq
+Pipeline Cycle 1
+  IF/ID  : addi
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 2
+  IF/ID  : addi
+  ID/EX  : addi
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 3
+  IF/ID  : lw
+  ID/EX  : addi
+  EX/MEM : addi
+  MEM/WB : empty
+
+Pipeline Cycle 4
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : addi
+  MEM/WB : addi
+
+Pipeline Cycle 5
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : addi
+
+Pipeline Cycle 6
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 7
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 8
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 9
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 10
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 11
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 12
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 13
+  IF/ID  : empty
+  ID/EX  : j
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 14
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : j
+  MEM/WB : beq
+
+Pipeline Cycle 15
+  IF/ID  : lw
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : j
+
+Pipeline Cycle 16
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 17
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : empty
+
+Pipeline Cycle 18
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 19
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 20
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 21
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 22
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 23
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 24
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 25
+  IF/ID  : empty
+  ID/EX  : j
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 26
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : j
+  MEM/WB : beq
+
+Pipeline Cycle 27
+  IF/ID  : lw
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : j
+
+Pipeline Cycle 28
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 29
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : empty
+
+Pipeline Cycle 30
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 31
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 32
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 33
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 34
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 35
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 36
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 37
+  IF/ID  : empty
+  ID/EX  : j
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 38
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : j
+  MEM/WB : beq
+
+Pipeline Cycle 39
+  IF/ID  : lw
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : j
+
+Pipeline Cycle 40
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 41
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : empty
+
+Pipeline Cycle 42
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 43
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 44
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 45
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 46
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 47
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 48
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 49
+  IF/ID  : empty
+  ID/EX  : j
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 50
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : j
+  MEM/WB : beq
+
+Pipeline Cycle 51
+  IF/ID  : lw
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : j
+
+Pipeline Cycle 52
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 53
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : empty
+
+Pipeline Cycle 54
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 55
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 56
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 57
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 58
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 59
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 60
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 61
+  IF/ID  : empty
+  ID/EX  : j
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 62
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : j
+  MEM/WB : beq
+
+Pipeline Cycle 63
+  IF/ID  : lw
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : j
+
+Pipeline Cycle 64
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 65
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : empty
+
+Pipeline Cycle 66
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 67
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 68
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 69
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 70
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 71
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 72
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 73
+  IF/ID  : empty
+  ID/EX  : j
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 74
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : j
+  MEM/WB : beq
+
+Pipeline Cycle 75
+  IF/ID  : lw
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : j
+
+Pipeline Cycle 76
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 77
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : empty
+
+Pipeline Cycle 78
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 79
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 80
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 81
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 82
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 83
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 84
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 85
+  IF/ID  : empty
+  ID/EX  : j
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 86
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : j
+  MEM/WB : beq
+
+Pipeline Cycle 87
+  IF/ID  : lw
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : j
+
+Pipeline Cycle 88
+  IF/ID  : add
+  ID/EX  : lw
+  EX/MEM : empty
+  MEM/WB : empty
+
+Pipeline Cycle 89
+  IF/ID  : add
+  ID/EX  : empty
+  EX/MEM : lw
+  MEM/WB : empty
+
+Pipeline Cycle 90
+  IF/ID  : sub
+  ID/EX  : add
+  EX/MEM : empty
+  MEM/WB : lw
+
+Pipeline Cycle 91
+  IF/ID  : and
+  ID/EX  : sub
+  EX/MEM : add
+  MEM/WB : empty
+
+Pipeline Cycle 92
+  IF/ID  : or
+  ID/EX  : and
+  EX/MEM : sub
+  MEM/WB : add
+
+Pipeline Cycle 93
+  IF/ID  : sw
+  ID/EX  : or
+  EX/MEM : and
+  MEM/WB : sub
+
+Pipeline Cycle 94
+  IF/ID  : addi
+  ID/EX  : sw
+  EX/MEM : or
+  MEM/WB : and
+
+Pipeline Cycle 95
+  IF/ID  : beq
+  ID/EX  : addi
+  EX/MEM : sw
+  MEM/WB : or
+
+Pipeline Cycle 96
+  IF/ID  : j
+  ID/EX  : beq
+  EX/MEM : addi
+  MEM/WB : sw
+
+Pipeline Cycle 97
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : beq
+  MEM/WB : addi
+
+Pipeline Cycle 98
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : beq
+
+Pipeline Cycle 99
+  IF/ID  : empty
+  ID/EX  : empty
+  EX/MEM : empty
+  MEM/WB : empty
+
