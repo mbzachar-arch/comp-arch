@@ -22,6 +22,16 @@ void init_cpu_params(CPUParams *params, const char *name) {
     params->single_cycle_ipc = 1;
     params->pipelined_ipc = 1;
     params->has_forwarding = 1;
+
+    params->lw_ps = 800.0;
+    params->sw_ps = 700.0;
+    params->rtype_ps = 600.0;
+    params->beq_ps = 500.0;
+    params->j_ps = 500.0;
+    params->nop_ps = 100.0;
+
+    params->single_cycle_reference_clock_ps = 800.0;
+    params->pipeline_clock_ps = 200.0;
 }
 
 void init_metrics(PerformanceMetrics *m) {
@@ -37,6 +47,11 @@ void init_metrics(PerformanceMetrics *m) {
     m->throughput_ips = 0.0;
     m->speedup = 0.0;
 
+    m->total_execution_time_ps = 0.0;
+    m->average_instruction_latency_ps = 0.0;
+    m->reference_clock_ps = 0.0;
+    m->effective_clock_ps = 0.0;
+
     m->note_count = 0;
 }
 
@@ -44,11 +59,22 @@ void init_pipeline_state(PipelineState *p) {
     memset(p, 0, sizeof(PipelineState));
 }
 
+void init_instruction_stats(InstructionStats *s) {
+    s->lw_count = 0;
+    s->sw_count = 0;
+    s->rtype_count = 0;
+    s->beq_count = 0;
+    s->j_count = 0;
+    s->nop_count = 0;
+    s->total_count = 0;
+}
+
 void init_simulator(Simulator *sim, const char *name) {
     init_cpu_state(&sim->cpu);
     init_cpu_params(&sim->params, name);
     init_metrics(&sim->metrics);
     init_pipeline_state(&sim->pipe);
+    init_instruction_stats(&sim->stats);
 }
 
 void add_metric_note(PerformanceMetrics *m, const char *text) {
@@ -69,6 +95,7 @@ const char *opcode_name(OpCode op) {
         case OP_LW:   return "lw";
         case OP_SW:   return "sw";
         case OP_BEQ:  return "beq";
+        case OP_J:    return "j";
         case OP_NOP:  return "nop";
         default:      return "invalid";
     }
@@ -102,6 +129,10 @@ void print_instruction(FILE *out, const Instruction *instr, int index) {
                     opcode_name(instr->op), instr->rs, instr->rt, instr->imm);
             break;
 
+        case OP_J:
+            fprintf(out, "j %d\n", instr->imm);
+            break;
+
         case OP_NOP:
             fprintf(out, "nop\n");
             break;
@@ -112,56 +143,9 @@ void print_instruction(FILE *out, const Instruction *instr, int index) {
     }
 }
 
-void print_cpu_params(FILE *out, const CPUParams *params) {
-    fprintf(out, "=== CPU Parameters ===\n");
-    fprintf(out, "Name             : %s\n", params->name);
-    fprintf(out, "Clock rate       : %.2f Hz\n", params->clock_rate_hz);
-    fprintf(out, "Pipeline depth   : %d\n", params->pipeline_depth);
-    fprintf(out, "Single-cycle IPC : %d\n", params->single_cycle_ipc);
-    fprintf(out, "Pipelined IPC    : %d\n", params->pipelined_ipc);
-    fprintf(out, "Forwarding       : %s\n", params->has_forwarding ? "Yes" : "No");
-    fprintf(out, "\n");
-}
-
 void print_pipeline_state(FILE *out, const PipelineState *p) {
-    fprintf(out, "=== Pipeline Registers ===\n");
-
-    fprintf(out, "IF/ID   : valid=%d, instr=%s\n",
-            p->if_id.valid, opcode_name(p->if_id.instr.op));
-
-    fprintf(out, "ID/EX   : valid=%d, instr=%s\n",
-            p->id_ex.valid, opcode_name(p->id_ex.instr.op));
-
-    fprintf(out, "EX/MEM  : valid=%d, instr=%s\n",
-            p->ex_mem.valid, opcode_name(p->ex_mem.instr.op));
-
-    fprintf(out, "MEM/WB  : valid=%d, instr=%s\n",
-            p->mem_wb.valid, opcode_name(p->mem_wb.instr.op));
-
-    fprintf(out, "\n");
-}
-
-void print_metrics(FILE *out, const PerformanceMetrics *m) {
-    int i;
-
-    fprintf(out, "=== Performance Metrics ===\n");
-    fprintf(out, "Instruction count : %d\n", m->instruction_count);
-    fprintf(out, "Total cycles      : %d\n", m->total_cycles);
-    fprintf(out, "Stall cycles      : %d\n", m->stall_cycles);
-    fprintf(out, "Flush cycles      : %d\n", m->flush_cycles);
-    fprintf(out, "Data hazards      : %d\n", m->data_hazards);
-    fprintf(out, "Control hazards   : %d\n", m->control_hazards);
-    fprintf(out, "CPI               : %.4f\n", m->cpi);
-    fprintf(out, "Latency (sec)     : %.8e\n", m->latency_sec);
-    fprintf(out, "Throughput (IPS)  : %.2f\n", m->throughput_ips);
-    fprintf(out, "Speedup           : %.4f\n", m->speedup);
-    fprintf(out, "\n");
-
-    if (m->note_count > 0) {
-        fprintf(out, "=== Hazard / Execution Notes ===\n");
-        for (i = 0; i < m->note_count; i++) {
-            fprintf(out, "- %s\n", m->notes[i]);
-        }
-        fprintf(out, "\n");
-    }
+    fprintf(out, "  IF/ID  : %s\n", p->if_id.valid ? opcode_name(p->if_id.instr.op) : "empty");
+    fprintf(out, "  ID/EX  : %s\n", p->id_ex.valid ? opcode_name(p->id_ex.instr.op) : "empty");
+    fprintf(out, "  EX/MEM : %s\n", p->ex_mem.valid ? opcode_name(p->ex_mem.instr.op) : "empty");
+    fprintf(out, "  MEM/WB : %s\n", p->mem_wb.valid ? opcode_name(p->mem_wb.instr.op) : "empty");
 }
