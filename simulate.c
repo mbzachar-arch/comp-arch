@@ -246,15 +246,15 @@ static void classify_instruction(InstructionStats *s, const Instruction *instr) 
         case OP_LW:
             s->lw_count++;
             break;
+
         case OP_SW:
             s->sw_count++;
             break;
+
         case OP_BEQ:
             s->beq_count++;
             break;
-        case OP_J:
-            s->j_count++;
-            break;
+
         case OP_ADD:
         case OP_SUB:
         case OP_AND:
@@ -262,9 +262,7 @@ static void classify_instruction(InstructionStats *s, const Instruction *instr) 
         case OP_ADDI:
             s->rtype_count++;
             break;
-        case OP_NOP:
-            s->nop_count++;
-            break;
+
         default:
             break;
     }
@@ -292,16 +290,14 @@ static void finalize_nonpipeline_timing(Simulator *sim) {
         (s->lw_count * p->lw_ps) +
         (s->sw_count * p->sw_ps) +
         (s->rtype_count * p->rtype_ps) +
-        (s->beq_count * p->beq_ps) +
-        (s->j_count * p->j_ps) +
-        (s->nop_count * p->nop_ps);
+        (s->beq_count * p->beq_ps);
 
     m->reference_clock_ps = p->single_cycle_reference_clock_ps;
     m->effective_clock_ps = p->single_cycle_reference_clock_ps;
     m->total_execution_time_ps = total_time_ps;
 
-    if (m->instruction_count > 0) {
-        m->average_instruction_latency_ps = total_time_ps / m->instruction_count;
+    if (s->total_count > 0) {
+        m->average_instruction_latency_ps = total_time_ps / s->total_count;
         m->cpi = 1.0;
     } else {
         m->average_instruction_latency_ps = 0.0;
@@ -311,7 +307,7 @@ static void finalize_nonpipeline_timing(Simulator *sim) {
     m->latency_sec = total_time_ps * 1e-12;
 
     if (m->latency_sec > 0.0) {
-        m->throughput_ips = (double)m->instruction_count / m->latency_sec;
+        m->throughput_ips = (double)s->total_count / m->latency_sec;
     } else {
         m->throughput_ips = 0.0;
     }
@@ -578,11 +574,10 @@ void write_professor_style_report(FILE *out,
     fprintf(out, "Processed 1 file(s): ['%s']\n\n", input_name);
 
     fprintf(out, "Instruction counts:\n");
-    fprintf(out, "lw=%d, sw=%d, R-type=%d, beq=%d",
-            s->lw_count, s->sw_count, s->rtype_count, s->beq_count);
+fprintf(out, "lw=%d, sw=%d, R-type=%d, beq=%d\n",
+        s->lw_count, s->sw_count, s->rtype_count, s->beq_count);
 
-    if (s->j_count > 0) fprintf(out, ", j=%d", s->j_count);
-    if (s->nop_count > 0) fprintf(out, ", nop=%d", s->nop_count);
+   
 
     fprintf(out, "\n");
     fprintf(out, "Total instructions: %d\n\n", s->total_count);
@@ -593,7 +588,7 @@ void write_professor_style_report(FILE *out,
     fprintf(out, "  sw: %.0f\n", single_sim->params.sw_ps);
     fprintf(out, "  R-type: %.0f\n", single_sim->params.rtype_ps);
     fprintf(out, "  beq: %.0f\n", single_sim->params.beq_ps);
-    if (s->j_count > 0) fprintf(out, "  j: %.0f\n", single_sim->params.j_ps);
+   
 
     fprintf(out, "Average CPI: %.3f\n", single_sim->metrics.cpi);
     fprintf(out, "Total execution time: %.0f ps\n", single_sim->metrics.total_execution_time_ps);
